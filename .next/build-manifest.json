@@ -33,16 +33,6 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
-    ],
-    "/clients/[id]": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/clients/[id].js"
-    ],
-    "/clients/[id]/[clientsProjectId]": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/clients/[id]/[clientsProjectId].js"
     ]
   },
   "ampFirstPages": []
