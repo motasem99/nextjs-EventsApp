@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
+import { useRouter } from 'next/router';
 import classes from '../ui/ButtonStyle.module.css';
 import styles from './EventsSearchStyle.module.css';
 
-const EventsSearch = ({ onSearch }) => {
+const EventsSearch = () => {
+  const router = useRouter();
   const yearInputRef = useRef();
   const monthInputRef = useRef();
 
@@ -12,7 +14,8 @@ const EventsSearch = ({ onSearch }) => {
     const selectedYear = yearInputRef.current.value;
     const selectedMonth = monthInputRef.current.value;
 
-    onSearch(selectedYear, selectedMonth);
+    const fullPath = `/events/${selectedYear}/${selectedMonth}`;
+    router.push(fullPath);
   };
 
   return (
