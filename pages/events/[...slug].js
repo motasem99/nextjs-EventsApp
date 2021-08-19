@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { useRouter } from 'next/router';
 import { getFilteredEvents } from '../../helpers/api-util';
 import EventList from '../../components/events/EventList';
 import ResultsTitle from '../../components/events/ResultTitle';
@@ -7,20 +6,6 @@ import Button from '../../components/ui/Button';
 import ErrorAlert from '../../components/ui/ErrorAlert';
 
 function FilteredEventsPage({ hasError, events, date }) {
-  const router = useRouter();
-
-  // const filterData = router.query.slug;
-
-  // if (!filterData) {
-  //   return <p className='center'>Loading...</p>;
-  // }
-
-  // const filteredYear = filterData[0];
-  // const filteredMonth = filterData[1];
-
-  // const numYear = +filteredYear;
-  // const numMonth = +filteredMonth;
-
   if (hasError) {
     return (
       <Fragment>
