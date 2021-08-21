@@ -4,9 +4,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang='en'>
-        <head />
+        <Head />
         <body>
-          <div id='overlays'></div>
+          <div id='overlays' />
           <Main />
           <NextScript />
         </body>

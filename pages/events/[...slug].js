@@ -1,25 +1,28 @@
 import { Fragment, useEffect, useState } from 'react';
-import Head from 'next/head';
-import { getFilteredEvents } from '../../helpers/api-util';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import EventList from '../../components/events/EventList';
-import ResultsTitle from '../../components/events/ResultTitle';
-import Button from '../../components/ui/Button';
-import ErrorAlert from '../../components/ui/ErrorAlert';
+import Head from 'next/head';
 
-function FilteredEventsPage({ hasError, events, date }) {
+import { getFilteredEvents } from '../../helpers/api-util';
+import EventList from '../../components/events/event-list';
+import ResultsTitle from '../../components/events/results-title';
+import Button from '../../components/ui/button';
+import ErrorAlert from '../../components/ui/error-alert';
+
+function FilteredEventsPage(props) {
   const [loadedEvents, setLoadedEvents] = useState();
   const router = useRouter();
+
   const filterData = router.query.slug;
 
   const { data, error } = useSWR(
-    'https://nextjs-project-80927-default-rtdb.firebaseio.com/events.json'
+    'https://nextjs-course-c81cc-default-rtdb.firebaseio.com/events.json'
   );
 
   useEffect(() => {
     if (data) {
       const events = [];
+
       for (const key in data) {
         events.push({
           id: key,
@@ -32,10 +35,10 @@ function FilteredEventsPage({ hasError, events, date }) {
   }, [data]);
 
   let pageHeadData = (
-    <head>
+    <Head>
       <title>Filtered Events</title>
-      <meta name='description' content={`A list of filtered events`} />
-    </head>
+      <meta name='description' content={`A list of filtered events.`} />
+    </Head>
   );
 
   if (!loadedEvents) {
@@ -79,7 +82,7 @@ function FilteredEventsPage({ hasError, events, date }) {
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
         <div className='center'>
-          <Button link='events'>Show All Events</Button>
+          <Button link='/events'>Show All Events</Button>
         </div>
       </Fragment>
     );
@@ -107,12 +110,12 @@ function FilteredEventsPage({ hasError, events, date }) {
     );
   }
 
-  const dateEvents = new Date(numYear, numMonth - 1);
+  const date = new Date(numYear, numMonth - 1);
 
   return (
     <Fragment>
       {pageHeadData}
-      <ResultsTitle date={dateEvents} />
+      <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </Fragment>
   );
@@ -120,7 +123,9 @@ function FilteredEventsPage({ hasError, events, date }) {
 
 // export async function getServerSideProps(context) {
 //   const { params } = context;
+
 //   const filterData = params.slug;
+
 //   const filteredYear = filterData[0];
 //   const filteredMonth = filterData[1];
 
@@ -136,9 +141,7 @@ function FilteredEventsPage({ hasError, events, date }) {
 //     numMonth > 12
 //   ) {
 //     return {
-//       props: {
-//         hasError: true,
-//       },
+//       props: { hasError: true },
 //       // notFound: true,
 //       // redirect: {
 //       //   destination: '/error'
