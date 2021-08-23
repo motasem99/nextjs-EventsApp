@@ -17,19 +17,6 @@ async function handler(req, res) {
 
     client.close();
 
-    // const uri =
-    //   'mongodb+srv://mutasem-NextjsProject:2741999@cluster0.6sm4t.mongodb.net/newsletter?retryWrites=true&w=majority';
-    // const client = new MongoClient(uri, {
-    //   useNewUrlParser: true,
-    //   useUnifiedTopology: true,
-    // });
-    // client.connect((err) => {
-    //   const collection = client.db().collection('emails');
-    //   // perform actions on the collection object
-    //   client.close();
-    // });
-
-    console.log(userEmail);
     res.status(201).json({ message: 'Signed up!' });
   }
 }
