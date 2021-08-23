@@ -1,12 +1,12 @@
 import Head from 'next/head';
 
 import Layout from '../components/layout/layout';
-import { notificationContextProvider } from '../store/notification';
+import { NotificationContextProvider } from '../store/notification-context';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <notificationContextProvider>
+    <NotificationContextProvider>
       <Layout>
         <Head>
           <title>Next Events</title>
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
         </Head>
         <Component {...pageProps} />
       </Layout>
-    </notificationContextProvider>
+    </NotificationContextProvider>
   );
 }
 
