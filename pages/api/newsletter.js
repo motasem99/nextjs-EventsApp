@@ -1,17 +1,4 @@
-const { MongoClient } = require('mongodb');
-
-async function connectDatabase() {
-  const client = await MongoClient.connect(
-    'mongodb+srv://mutasem-NextjsProject:2741999@cluster0.6sm4t.mongodb.net/events?retryWrites=true&w=majority'
-  );
-
-  return client;
-}
-
-async function insertDocument(client, document) {
-  const db = client.db();
-  await db.collection('newsletter').insertOne(document);
-}
+import { connectDatabase, insertDocument } from '../../helpers/db-util';
 
 async function handler(req, res) {
   if (req.method === 'POST') {
@@ -32,7 +19,7 @@ async function handler(req, res) {
     }
 
     try {
-      await insertDocument(client, { email: useEmail });
+      await insertDocument(client, 'newsletter', { email: useEmail });
       client.close();
     } catch (error) {
       res.status(500).json({ message: 'Inserting data failed!' });
