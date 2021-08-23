@@ -15,7 +15,6 @@ function Comments(props) {
       fetch('/api/comments/' + eventId)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setComments(data.comments);
         });
     }
@@ -35,7 +34,6 @@ function Comments(props) {
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
-    // send data to API
   }
 
   return (
